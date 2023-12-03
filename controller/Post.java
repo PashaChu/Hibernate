@@ -11,6 +11,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "Id")
     public Integer getId(){return id;}
     public void setId(Integer id) {this.id = id;}
 
