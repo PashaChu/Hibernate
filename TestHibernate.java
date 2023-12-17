@@ -1,58 +1,32 @@
 package com.example.hello_spring;
 
-import com.example.hello_spring.controller.HibernateUtil;
-import com.example.hello_spring.controller.User;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
-
-import java.util.List;
+import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 public class TestHibernate {
     public static void main(String[] args) {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
             User user = new User();
             user.setId(1);
             user.setLogin("Vasya");
             user.setPassword("1234");
             user.setCountry("Russia");
             user.setSex("m");
-
             session.persist(user);
 
-            user.setId(2);
-            user.setLogin("Bob");
-            user.setPassword("4321");
-            user.setCountry("USA");
-            user.setSex("m");
-
-            session.persist(user);
-
-            session.getTransaction().commit();
-        } catch (Throwable cause){
-            cause.printStackTrace();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
         }
 
-        List<User> list = null;
-
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            session.beginTransaction();
-
-            Class<User> user = null;
-            Query<User> query = session.createQuery("FROM User", user);
-            list = query.list();
-
-            session.getTransaction().commit();
-        } catch (Throwable cause){
-            cause.printStackTrace();
-        }
-
-        if (list != null && !list.isEmpty()){
-            for(User user : list){
-                System.out.println(user);
-            }
-        }
-
-        HibernateUtil.shutdown();
     }
 }
