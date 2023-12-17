@@ -1,4 +1,4 @@
-package com.example.hello_spring.controller;
+package com.example.hello_spring;
 
 import jakarta.persistence.*;
 
