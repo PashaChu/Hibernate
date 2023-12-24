@@ -10,11 +10,13 @@
         <property name="hibernate.connection.password">1234</property>
         <property name="hibernate.query">org.hibernate.query.Query</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <mapping class="com.example.hello_spring.TestHibernate"/>
         <mapping class="com.example.hello_spring.User"/>
+        <mapping class="com.example.hello_spring.Tag"/>
+        <mapping class="com.example.hello_spring.Post"/>
     </session-factory>
 </hibernate-configuration>
