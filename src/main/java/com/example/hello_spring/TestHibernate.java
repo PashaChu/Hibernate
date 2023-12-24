@@ -13,7 +13,6 @@ public class TestHibernate {
         try {
             tx = session.beginTransaction();
             User user = new User();
-            user.setId(1);
             user.setLogin("Vasya");
             user.setPassword("1234");
             user.setCountry("Russia");
