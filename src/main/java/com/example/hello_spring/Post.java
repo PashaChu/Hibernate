@@ -1,16 +1,20 @@
 package com.example.hello_spring;
 
 import jakarta.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "post", schema = "public")
 public class Post extends User {
+
     private String text;
     private String title;
 
+    public Post(){}
+    public Post(String text, String title){
+        this.title = title;
+        this.text = text;
+    }
 
-    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "text")
     public String getText() {return text;}
     public void setText(String text){this.text = text;}
@@ -19,17 +23,11 @@ public class Post extends User {
     public String getTitle(){return title;}
     public void setTitle(String title){this.title = title;}
 
-    @ManyToOne
-    private User user;
-
-    @OneToMany
-    private List<Tag> tag;
-
     @Override
     public String toString(){
         return "Post{" +
-                ", text='" + text + '\'' +
-                ", title='" +title + '\'' +
+                ", text='" + text +
+                ", title='" +title +
                 '}';
     }
 }

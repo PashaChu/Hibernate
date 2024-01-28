@@ -5,20 +5,24 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "tag", schema = "public")
 public class Tag extends User {
-    private  String text;
 
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "text")
-    public String getText() {return text;}
-    public void setText(String text) {this.text = text;}
+    private  String name;
 
-    @ManyToOne
-    private Post post;
+    public Tag(){}
+    public Tag(String name){
+        this.name = name;
+    }
+
+    @Column(name = "name")
+    public String getText() {return name;}
+    public void setText(String text) {this.name = text;}
 
     @Override
     public String toString() {
         return "Tag{" +
-                ", text='" + text + '\'' +
+                ", text='" + name  +
                 '}';
     }
+
+
 }
