@@ -1,32 +1,33 @@
-package com.example.hello_spring;
+package com.example.hello_spring.model;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "post")
-public class Post {
-    private Integer id;
+@Table(name = "post", schema = "public")
+public class Post extends User {
+
     private String text;
     private String title;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "Id")
-    public Integer getId(){return id;}
-    public void setId(Integer id) {this.id = id;}
+    public Post(){}
+    public Post(String text, String title){
+        this.title = title;
+        this.text = text;
+    }
 
+    @Column(name = "text")
     public String getText() {return text;}
     public void setText(String text){this.text = text;}
 
+    @Column(name = "title")
     public String getTitle(){return title;}
     public void setTitle(String title){this.title = title;}
 
     @Override
     public String toString(){
         return "Post{" +
-                "id= " +id +
-                ", text='" + text + '\'' +
-                ", title='" +title + '\'' +
+                ", text='" + text +
+                ", title='" +title +
                 '}';
     }
 }
