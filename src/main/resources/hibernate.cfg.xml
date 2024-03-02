@@ -15,8 +15,8 @@
         <property name="format_sql">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <mapping class="com.example.hello_spring.TestHibernate"/>
-        <mapping class="com.example.hello_spring.User"/>
-        <mapping class="com.example.hello_spring.Tag"/>
-        <mapping class="com.example.hello_spring.Post"/>
+        <mapping class="com.example.hello_spring.model.User"/>
+        <mapping class="com.example.hello_spring.model.Tag"/>
+        <mapping class="com.example.hello_spring.model.Post"/>
     </session-factory>
 </hibernate-configuration>
